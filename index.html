@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+
+  <script>
+    function computerPlay () {
+      let rando = Math.floor(Math.random() * 3);
+      if (rando === 0) {
+        return "Rock";
+      }
+      else if (rando === 1) {
+        return "Paper";
+      }
+      else {
+        return "Scissors";
+      }
+    }
+
+    console.log (computerPlay());
+  </script>
+
+</body>
+</html>
