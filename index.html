@@ -68,7 +68,7 @@
       let roundWinner = [];
       let endScore = [];
 
-      while (count > 0) {
+      while (count) {
         let playerSelection = window.prompt ("Will it be rock, paper or scissors?");
         let computerSelection = computerPlay ();
         roundWinner = playRound(playerSelection, computerSelection);
@@ -92,7 +92,7 @@
       console.log (endScore[1]);
     }
 
-game();
+    game();
   </script>
 
 </body>
