@@ -57,14 +57,22 @@ let btnPaper = document.querySelector('#paper');
 let btnScissors = document.querySelector('#scissors');
 let computerSelection = computerPlay();
 
+const container = document.querySelector('#container');
+const resultDiv = document.createElement('div');
+resultDiv.classList.add('result');
+resultDiv.textContent =
+
 btnRock.addEventListener('click', function() {
-  console.log(playRound('rock', computerSelection)[1]);
+  resultDiv.textContent = playRound('rock', computerSelection)[1];
 });
 
 btnPaper.addEventListener('click', function() {
-  console.log(playRound('paper', computerSelection)[1]);
+  resultDiv.textContent = playRound('paper', computerSelection)[1];
 });
 
 btnScissors.addEventListener('click', function() {
-  console.log(playRound('scissors', computerSelection)[1]);
+  resultDiv.textContent = playRound('scissors', computerSelection)[1];
 });
+
+
+container.appendChild(resultDiv);
