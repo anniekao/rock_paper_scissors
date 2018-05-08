@@ -1,3 +1,13 @@
+let btnRock = document.querySelector('#rock');
+let btnPaper = document.querySelector('#paper');
+let btnScissors = document.querySelector('#scissors');
+
+let scoreDiv = document.getElementById('status')
+
+let computerScore = 0;
+let playerScore = 0;
+let roundCounter = 0;
+
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
   if (rando === 0) {
@@ -11,8 +21,9 @@ function computerPlay () {
   }
 }
 
-function playRound (playerSelection, computerSelection){
+function playRound (playerSelection){
   playerSelection = playerSelection.toLowerCase();
+  let computerSelection = computerPlay();
 
   if (playerSelection == "rock" && computerSelection == "scissors") {
     return ["pw", "Rock beats scissors! You win!"];
@@ -52,27 +63,18 @@ function evaluateScore (playerScore, computerScore) {
   }
 }
 
-let btnRock = document.querySelector('#rock');
-let btnPaper = document.querySelector('#paper');
-let btnScissors = document.querySelector('#scissors');
-let computerSelection = computerPlay();
+function main() {
+  btnRock.addEventListener('click', function() {
+    scoreDiv.textContent = playRound ('rock')[1];
+  });
 
-const container = document.querySelector('#container');
-const resultDiv = document.createElement('div');
-resultDiv.classList.add('result');
-resultDiv.textContent =
+  btnPaper.addEventListener('click', function() {
+    scoreDiv.textContent = playRound ('paper')[1];
+  });
 
-btnRock.addEventListener('click', function() {
-  resultDiv.textContent = playRound('rock', computerSelection)[1];
-});
+  btnScissors.addEventListener('click', function() {
+    scoreDiv.textContent = playRound ('scissors')[1];
+  });
+}
 
-btnPaper.addEventListener('click', function() {
-  resultDiv.textContent = playRound('paper', computerSelection)[1];
-});
-
-btnScissors.addEventListener('click', function() {
-  resultDiv.textContent = playRound('scissors', computerSelection)[1];
-});
-
-
-container.appendChild(resultDiv);
+main();
