@@ -1,0 +1,54 @@
+#status, #round {
+  border: 3px solid black;
+  margin: 50px;
+  width: 50%;
+  margin-left: 25%;
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+#round {
+  border: 3px solid black;
+  margin: 50px;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 0;
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+#score {
+  width: 75%;
+  margin-left: 25%;
+  padding-bottom: 25px;
+  overflow: hidden;
+}
+
+#playerScore {
+  border: 3px solid black;
+  width: 25%;
+  padding: 10px;
+  margin-right: 85px;
+  float: left;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+#computerScore {
+  border: 3px solid black;
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+}

@@ -4,6 +4,8 @@ let btnScissors = document.querySelector('#scissors');
 
 let resultDiv = document.getElementById('status');
 let roundDiv = document.getElementById('round');
+let playerScoreDiv = document.getElementById('playerScore');
+let computerScoreDiv = document.getElementById('computerScore');
 
 let computerScore = 0;
 let playerScore = 0;
@@ -11,40 +13,65 @@ let playerScore = 0;
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
   if (rando === 0) {
-    return "rock";
+    return "r";
   }
   else if (rando === 1) {
-    return "paper";
+    return "p";
   }
   else {
-    return "scissors";
+    return "s";
   }
 }
 
-function playRound (playerSelection){
-  playerSelection = playerSelection.toLowerCase();
-  let computerSelection = computerPlay();
-
-  if (playerSelection == "rock" && computerSelection == "scissors") {
-    return ["pw", "Rock beats scissors! You win!"];
+function convertToPhrase(playerSelection, computerSelection) {
+  if (playerSelection === "r" && computerSelection === "s" ||
+    playerSelection === "s" && computerSelection === "r") {
+    return "Rock breaks scissors. ";
   }
-  else if (playerSelection == "scissors" && computerSelection == "rock"){
-    return ["cw","Rock beats scissors! You lose!"];
-  }
-  else if (playerSelection == "paper" && computerSelection == "rock"){
-    return ["pw","Paper covers rock! You win!"];
-  }
-  else if (playerSelection == "rock" && computerSelection == "paper"){
-    return ["cw","Paper covers rock! You lose!"];
-  }
-  else if (playerSelection == "scissors" && computerSelection == "paper"){
-    return ["pw","Scissors cut paper! You win!"];
-  }
-  else if (playerSelection == "paper" && computerSelection == "scissors"){
-    return ["cw","Scissors cut paper! You lose!"];
+  else if (playerSelection === "s" && computerSelection === "p" ||
+    playerSelection === "p" && computerSelection === "s") {
+    return "Scissors cut paper. ";
   }
   else {
-    return ["tie","It's a tie!"];
+    return "Paper covers rock. ";
+  }
+}
+
+function win(playerSelection, computerSelection) {
+  playerScore++;
+  resultDiv.textContent = convertToPhrase(playerSelection, computerSelection) + "You Win!";
+  playerScoreDiv.textContent = "Player: " + playerScore;
+}
+
+function lose(playerSelection, computerSelection) {
+  computerScore++;
+  resultDiv.textContent = convertToPhrase(playerSelection, computerSelection) + "You Lose!";
+  computerScoreDiv.textContent = "Computer: " + computerScore;
+}
+
+function tie(playerSelection, computerSelection) {
+  resultDiv.textContent = "It's a tie!";
+}
+
+function playRound (playerSelection){
+  let computerSelection = computerPlay();
+
+  switch (playerSelection + computerSelection) {
+    case "pr":
+    case "rs":
+    case "sp":
+      win(playerSelection, computerSelection);
+      break;
+    case "rp":
+    case "sr":
+    case "ps":
+      lose(playerSelection, computerSelection);
+      break;
+    case "rr":
+    case "ss":
+    case "pp":
+      tie(playerSelection, computerSelection);
+      break;
   }
 }
 
@@ -68,19 +95,19 @@ function main() {
   let roundCounter = 0;
 
   btnRock.addEventListener('click', function() {
-    resultDiv.textContent = playRound ('rock')[1];
+    playRound ('r');
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
   btnPaper.addEventListener('click', function() {
-    resultDiv.textContent = playRound ('paper')[1];
+    playRound ('p');
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
   btnScissors.addEventListener('click', function() {
-    resultDiv.textContent = playRound ('scissors')[1];
+    playRound ('s');
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
