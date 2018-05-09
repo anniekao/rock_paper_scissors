@@ -9,6 +9,7 @@ let computerScoreDiv = document.getElementById('computerScore');
 
 let computerScore = 0;
 let playerScore = 0;
+let roundCounter = 0;
 
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
@@ -32,25 +33,35 @@ function convertToPhrase(playerSelection, computerSelection) {
     playerSelection === "p" && computerSelection === "s") {
     return "Scissors cut paper. ";
   }
-  else {
+  else if (playerSelection === "p" && computerSelection === "r" ||
+    playerSelection === "r" && computerSelection === "p") {
     return "Paper covers rock. ";
   }
 }
 
+function convertToWord(playerSelection) {
+  if (playerSelection === "r") {return "rock";}
+  else if (playerSelection === "p") {return "paper";}
+  else {return "scissors";}
+}
+
 function win(playerSelection, computerSelection) {
   playerScore++;
-  resultDiv.textContent = convertToPhrase(playerSelection, computerSelection) + "You Win!";
+  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Win!`;
   playerScoreDiv.textContent = "Player: " + playerScore;
+  evaluateScore(playerScore, computerScore);
 }
 
 function lose(playerSelection, computerSelection) {
   computerScore++;
-  resultDiv.textContent = convertToPhrase(playerSelection, computerSelection) + "You Lose!";
+  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Lose!`;
   computerScoreDiv.textContent = "Computer: " + computerScore;
+  evaluateScore(playerScore, computerScore);
 }
 
 function tie(playerSelection, computerSelection) {
-  resultDiv.textContent = "It's a tie!";
+  resultDiv.textContent = `You both chose ${convertToWord(playerSelection)}. It's a tie!`;
+  evaluateScore(playerScore, computerScore);
 }
 
 function playRound (playerSelection){
@@ -75,25 +86,33 @@ function playRound (playerSelection){
   }
 }
 
+function reset () {
+  playerScore = 0;
+  computerScore = 0;
+  roundCounter = -1;
+
+  playerScoreDiv.textContent = "Player: " + playerScore;
+  computerScoreDiv.textContent = "Computer: " + computerScore;
+  roundDiv.textContent = "Round: 0";
+}
+
 function evaluateScore (playerScore, computerScore) {
-  if (playerScore > computerScore) {
-    return ["Player has won!", "Player score: " + playerScore + "// " + "Computer score: "
-      + computerScore];
+  if (playerScore == 5) {
+    console.log ("You got to 5 points first! You win!");
+    reset();
   }
-  else if (computerScore > playerScore) {
-    return ["Computer has won!", "Player score: " + playerScore + "// " + "Computer score: "
-      + computerScore];
+  else if (computerScore == 5) {
+    console.log ("Computer got to 5 points first! You lose!");
+    reset();
   }
-  else {
-    return ["It was a tie!", "Player score: " + playerScore + "// " + "Computer score: "
-      + computerScore];
+  else if (playerScore == 5 && computerScore == 5){
+    console.log ("You both scored 5 points!");
+    reset();
   }
 }
 
 
 function main() {
-  let roundCounter = 0;
-
   btnRock.addEventListener('click', function() {
     playRound ('r');
     roundCounter++
@@ -111,6 +130,8 @@ function main() {
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
+
+
 }
 
 main();
