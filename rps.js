@@ -2,11 +2,11 @@ let btnRock = document.querySelector('#rock');
 let btnPaper = document.querySelector('#paper');
 let btnScissors = document.querySelector('#scissors');
 
-let scoreDiv = document.getElementById('status')
+let resultDiv = document.getElementById('status');
+let roundDiv = document.getElementById('round');
 
 let computerScore = 0;
 let playerScore = 0;
-let roundCounter = 0;
 
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
@@ -63,17 +63,26 @@ function evaluateScore (playerScore, computerScore) {
   }
 }
 
+
 function main() {
+  let roundCounter = 0;
+
   btnRock.addEventListener('click', function() {
-    scoreDiv.textContent = playRound ('rock')[1];
+    resultDiv.textContent = playRound ('rock')[1];
+    roundCounter++
+    roundDiv.textContent = "Round: " + roundCounter;
   });
 
   btnPaper.addEventListener('click', function() {
-    scoreDiv.textContent = playRound ('paper')[1];
+    resultDiv.textContent = playRound ('paper')[1];
+    roundCounter++
+    roundDiv.textContent = "Round: " + roundCounter;
   });
 
   btnScissors.addEventListener('click', function() {
-    scoreDiv.textContent = playRound ('scissors')[1];
+    resultDiv.textContent = playRound ('scissors')[1];
+    roundCounter++
+    roundDiv.textContent = "Round: " + roundCounter;
   });
 }
 
