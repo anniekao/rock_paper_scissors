@@ -1,15 +1,17 @@
-let btnRock = document.querySelector('#rockCircle');
-let btnPaper = document.querySelector('#paperCircle');
-let btnScissors = document.querySelector('#scissorsCircle');
+let btnRock = document.querySelector("#r");
+let btnPaper = document.querySelector("#p");
+let btnScissors = document.querySelector("#s");
 
-let resultDiv = document.getElementById('status');
-let roundDiv = document.getElementById('round');
-let playerScoreDiv = document.getElementById('playerScore');
-let computerScoreDiv = document.getElementById('computerScore');
+let resultDiv = document.getElementById("status");
+let roundDiv = document.getElementById("round");
+let playerScoreDiv = document.getElementById("playerScore");
+let computerScoreDiv = document.getElementById("computerScore");
 
 let computerScore = 0;
 let playerScore = 0;
 let roundCounter = 0;
+
+let para = document.createElement ("p");
 
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
@@ -47,20 +49,26 @@ function convertToWord(playerSelection) {
 
 function win(playerSelection, computerSelection) {
   playerScore++;
-  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Win!`;
+  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Win! `;
   playerScoreDiv.textContent = "Player: " + playerScore;
+  document.getElementById(playerSelection).classList.add("green-glow");
+  setTimeout(function(){document.getElementById(playerSelection).classList.remove("green-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
 function lose(playerSelection, computerSelection) {
   computerScore++;
-  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Lose!`;
+  resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Lose! `;
   computerScoreDiv.textContent = "Computer: " + computerScore;
+  document.getElementById(playerSelection).classList.add("red-glow");
+  setTimeout(function(){document.getElementById(playerSelection).classList.remove("red-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
 function tie(playerSelection, computerSelection) {
-  resultDiv.textContent = `You both chose ${convertToWord(playerSelection)}. It's a tie!`;
+  resultDiv.textContent = `You both chose ${convertToWord(playerSelection)}. It's a tie! `;
+  document.getElementById(playerSelection).classList.add("grey-glow");
+  setTimeout(function(){document.getElementById(playerSelection).classList.remove("grey-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
@@ -98,35 +106,35 @@ function reset () {
 
 function evaluateScore (playerScore, computerScore) {
   if (playerScore == 5) {
-    console.log ("You got to 5 points first! You win!");
+    resultDiv.textContent += "You got to 5 points first!";
     reset();
   }
   else if (computerScore == 5) {
-    console.log ("Computer got to 5 points first! You lose!");
+    resultDiv.textContent += "Computer got to 5 points first!";
     reset();
   }
   else if (playerScore == 5 && computerScore == 5){
-    console.log ("You both scored 5 points!");
+    resultDiv.textContent += "You both scored 5 points!";
     reset();
   }
 }
 
 
 function main() {
-  btnRock.addEventListener('click', function() {
-    playRound ('r');
+  btnRock.addEventListener("click", function() {
+    playRound ("r");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
-  btnPaper.addEventListener('click', function() {
-    playRound ('p');
+  btnPaper.addEventListener("click", function() {
+    playRound ("p");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
-  btnScissors.addEventListener('click', function() {
-    playRound ('s');
+  btnScissors.addEventListener("click", function() {
+    playRound ("s");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
