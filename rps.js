@@ -11,8 +11,6 @@ let computerScore = 0;
 let playerScore = 0;
 let roundCounter = 0;
 
-let para = document.createElement ("p");
-
 function computerPlay () {
   let rando = Math.floor(Math.random() * 3);
   if (rando === 0) {
@@ -48,27 +46,30 @@ function convertToWord(playerSelection) {
 }
 
 function win(playerSelection, computerSelection) {
+  let playerSelectionSpan = document.getElementById(playerSelection);
   playerScore++;
   resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Win! `;
   playerScoreDiv.textContent = "Player: " + playerScore;
-  document.getElementById(playerSelection).classList.add("green-glow");
-  setTimeout(function(){document.getElementById(playerSelection).classList.remove("green-glow")}, 200);
+  playerSelectionSpan.classList.add("green-glow");
+  setTimeout(function(){playerSelectionSpan.classList.remove("green-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
 function lose(playerSelection, computerSelection) {
+  let playerSelectionSpan = document.getElementById(playerSelection);
   computerScore++;
   resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Lose! `;
   computerScoreDiv.textContent = "Computer: " + computerScore;
-  document.getElementById(playerSelection).classList.add("red-glow");
-  setTimeout(function(){document.getElementById(playerSelection).classList.remove("red-glow")}, 200);
+  playerSelectionSpan.classList.add("red-glow");
+  setTimeout(function(){playerSelectionSpan.classList.remove("red-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
 function tie(playerSelection, computerSelection) {
+  let playerSelectionSpan = document.getElementById(playerSelection);
   resultDiv.textContent = `You both chose ${convertToWord(playerSelection)}. It's a tie! `;
-  document.getElementById(playerSelection).classList.add("grey-glow");
-  setTimeout(function(){document.getElementById(playerSelection).classList.remove("grey-glow")}, 200);
+  playerSelectionSpan.classList.add("grey-glow");
+  setTimeout(function(){playerSelectionSpan.classList.remove("grey-glow")}, 200);
   evaluateScore(playerScore, computerScore);
 }
 
