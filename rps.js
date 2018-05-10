@@ -51,7 +51,7 @@ function win(playerSelection, computerSelection) {
   resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Win! `;
   playerScoreDiv.textContent = "Player: " + playerScore;
   playerSelectionSpan.classList.add("green-glow");
-  setTimeout(function(){playerSelectionSpan.classList.remove("green-glow")}, 200);
+  setTimeout(() => playerSelectionSpan.classList.remove("green-glow"), 200);
   evaluateScore(playerScore, computerScore);
 }
 
@@ -61,7 +61,7 @@ function lose(playerSelection, computerSelection) {
   resultDiv.textContent = `${convertToPhrase(playerSelection, computerSelection)} You Lose! `;
   computerScoreDiv.textContent = "Computer: " + computerScore;
   playerSelectionSpan.classList.add("red-glow");
-  setTimeout(function(){playerSelectionSpan.classList.remove("red-glow")}, 200);
+  setTimeout (() => playerSelectionSpan.classList.remove("red-glow"), 200);
   evaluateScore(playerScore, computerScore);
 }
 
@@ -69,7 +69,7 @@ function tie(playerSelection, computerSelection) {
   let playerSelectionSpan = document.getElementById(playerSelection);
   resultDiv.textContent = `You both chose ${convertToWord(playerSelection)}. It's a tie! `;
   playerSelectionSpan.classList.add("grey-glow");
-  setTimeout(function(){playerSelectionSpan.classList.remove("grey-glow")}, 200);
+  setTimeout(() => playerSelectionSpan.classList.remove("grey-glow"), 200);
   evaluateScore(playerScore, computerScore);
 }
 
@@ -122,19 +122,19 @@ function evaluateScore (playerScore, computerScore) {
 
 
 function main() {
-  btnRock.addEventListener("click", function() {
+  btnRock.addEventListener("click", () => {
     playRound ("r");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
-  btnPaper.addEventListener("click", function() {
+  btnPaper.addEventListener("click", () => {
     playRound ("p");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
   });
 
-  btnScissors.addEventListener("click", function() {
+  btnScissors.addEventListener("click", () => {
     playRound ("s");
     roundCounter++
     roundDiv.textContent = "Round: " + roundCounter;
