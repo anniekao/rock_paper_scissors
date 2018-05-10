@@ -1,6 +1,6 @@
-let btnRock = document.querySelector('#rock');
-let btnPaper = document.querySelector('#paper');
-let btnScissors = document.querySelector('#scissors');
+let btnRock = document.querySelector('#rockCircle');
+let btnPaper = document.querySelector('#paperCircle');
+let btnScissors = document.querySelector('#scissorsCircle');
 
 let resultDiv = document.getElementById('status');
 let roundDiv = document.getElementById('round');

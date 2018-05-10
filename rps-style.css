@@ -1,8 +1,8 @@
-#status, #round {
+#status {
   border: 3px solid black;
   margin: 50px;
   width: 50%;
-  margin-left: 25%;
+  margin-left: 210px;
   padding: 10px;
   text-align: center;
   font-size: large;
@@ -11,9 +11,9 @@
 
 #round {
   border: 3px solid black;
-  margin: 50px;
+  margin: 10px;
   width: 50%;
-  margin-left: 25%;
+  margin-left: 210px;
   margin-top: 0;
   padding: 10px;
   text-align: center;
@@ -23,7 +23,7 @@
 
 #score {
   width: 75%;
-  margin-left: 25%;
+  margin-left: 210px;
   padding-bottom: 25px;
   overflow: hidden;
 }
@@ -47,6 +47,17 @@
   font-size: large;
   font-weight: bold;
   overflow: hidden;
+}
+
+#rockCircle, #paperCircle, #scissorsCircle {
+  height: 150px;
+  width: 150px;
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: inline-block;
+  text-align:center;
+  line-height: 150px;
 }
 
 h1 {
